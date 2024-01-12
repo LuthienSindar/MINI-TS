@@ -1,3 +1,3 @@
 # Proyecto MINI-TS
 
-# Autores - Gabriel Martinez - Carlos Molano - Gabriel Martinez
+# Autores - Gabriel Martinez - Carlos Molano - Juan Moncada
