@@ -40,19 +40,18 @@
         <form>
             <div class="mb-3">
               <label for="exampleInputEmail1" class="form-label">Nombre de participantes</label>
-              <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
-              <div id="emailHelp" class="form-text">Separa los nombre por comas ,</div>
+              <div id="instrucciones" class="form-text">Separa los nombre por comas ,</div>
+              <input name="participantes" type="text" class="form-control" aria-describedby="instrucciones" />
             </div>
-            <button type="submit" class="btn btn-primary">INICIAR</button>
-          </form>
-
           <label for="customRange3" class="form-label">Example range</label>
           <div class="range" data-mdb-range-init>
-            <input type="range" class="form-range" min="0" max="10" step="1" value="0" id="customRange3" />
-
-            <div id="tamaño" >Número de grupos: 0</div>
-
+            <input type="range" class="form-range" min="0" max="10" step="1" value="0" id="sliderGrupos" />
+            <div id="cantidadGrupos" >Número de grupos: 0</div>
+            <div id="boton" >
+                <input type="submit" value="CREAR" />
+            </div>
           </div>
+        </form>
 
     </main>
 
