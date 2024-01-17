@@ -17,5 +17,42 @@ function crearGrupos(evento) {
         cantidadGrupos: parseInt(rango.value),
     };
     participantes.push(nuevoGrupo);
-    console.log(participantes);
+    agruparNombres(participantes);
+}
+console.log(participantes);
+function mezclarArray(array) {
+    //Se recorre el arreglo de derecha a izquierda, desde el último elemento hasta el primero
+    for (let i = array.length - 1; i > 0; i--) {
+        //creamos un índice j que es aleatorio usando math que sea de rango de 0 a i
+        const j = Math.floor(Math.random() * (i + 1));
+        // mezclamos los elementos segun el indice usando destructuracion (para no tener que hacer una variable temporal)
+        [array[i], array[j]] = [array[j], array[i]];
+    }
+    // retornamos un nuevo arreglo mezclado
+    return array;
+}
+// La función agruparNombres toma un arreglo de objetos 'Participantes'
+function agruparNombres(grupos) {
+    // Se mezclan los nombres del primer grupo utilizando la función mezclarArray construida antes.
+    const nombresMezclados = mezclarArray([...grupos[0].nombres]);
+    // Se inicializa un arreglo vacío para almacenar los nombres agrupados
+    const gruposAgrupados = [];
+    // Se crea un bucle que recorrerá el número de grupos especificados en el input del usuario
+    for (let i = 0; i < grupos[0].cantidadGrupos; i++) {
+        // crea un grupo vacio por cada recorrido del bicle (esta creando los grupos que necesitamos segun lo que el usuario necesita)
+        gruposAgrupados.push([]);
+    }
+    // se crea una variable index = 0 para saber a que grupo se le asignaran los nombres mezclados
+    let index = 0;
+    // Se realiza un bucle a través de los nombres mezclados
+    for (const nombre of nombresMezclados) {
+        // Se agrega el nombre al grupo actual en el que se encuentra el índice
+        gruposAgrupados[index].push(nombre);
+        // Se actualiza el índice para pasar al siguiente grupo y hacemos que index vuelva al principio si supera el número total de grupos,
+        // lo que permite una distribución cíclica de los nombres entre los grupos. en resumen vuelve al primer grupo y mete otro nombre :p
+        index = (index + 1) % grupos[0].cantidadGrupos;
+    }
+    console.log(gruposAgrupados);
+    // retornamos los grupos agrupados
+    return gruposAgrupados;
 }
