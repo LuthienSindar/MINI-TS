@@ -43,7 +43,8 @@ function mezclarArray(array: string[]): string[] {
     return array;
 }
 
-// La función agruparNombres toma un arreglo de objetos 'Participantes'
+// La función agruparNombres toma un arreglo de objetos 'Participantes' y crea los grupos segun lo que quiere el usuario y les va poniendo
+// los nombres que mezclamos en orden del idice de los grupos que se crearon, nos retorna una lista de listas de nombres.
 function agruparNombres(grupos: Participantes[]): string[][] {
     // Se mezclan los nombres del primer grupo utilizando la función mezclarArray construida antes.
     const nombresMezclados = mezclarArray([...grupos[0].nombres]);
