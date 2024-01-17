@@ -26,5 +26,19 @@ function crearGrupos(evento: Event): void {
         cantidadGrupos: parseInt(rango.value),
     };
     participantes.push(nuevoGrupo)
-    console.log(participantes)
 }
+
+console.log(participantes)
+
+function mezclarArray(array: string[]): string[] {
+    //Se recorre el arreglo de derecha a izquierda, desde el último elemento hasta el primero
+    for (let i = array.length - 1; i > 0; i--) {
+        //creamos un índice j que es aleatorio usando math que sea de rango de 0 a i
+        const j = Math.floor(Math.random() * (i + 1));
+        // mezclamos los elementos segun el indice usando destructuracion (para no tener que hacer una variable temporal)
+        [array[i], array[j]] = [array[j], array[i]];
+    }
+    // retornamos un nuevo arreglo mezclado
+    return array;
+}
+
