@@ -20,16 +20,13 @@ function crearGrupos(evento) {
         nombres: $form.participantes.value.split(","),
         cantidadGrupos: parseInt(rango.value),
     };
-    //Condicional para avisar si hay más grupos que participantes
     if (nuevoGrupo.cantidadGrupos > nuevoGrupo.nombres.length) {
         alert("nope");
     }
     else {
         participantes.push(nuevoGrupo);
-        agruparNombres(participantes);
+        mostrarGrupo();
     }
-    // Llama a la función para imprimir los grupos en el HTML
-    imprimirGrupos(gruposGenerados);
 }
 function mezclarArray(array) {
     //Se recorre el arreglo de derecha a izquierda, desde el último elemento hasta el primero
@@ -69,30 +66,18 @@ function agruparNombres(grupos) {
     return gruposAgrupados;
 }
 function mostrarGrupo() {
-    const $mostrarGrupo = document.getElementById("mostrarGrupo");
-    let contenidoHtml = ``;
-    //gruposAgrupados.forEach((grupo) => {});
-}
-mostrarGrupo();
-// Función para imprimir los grupos en el HTML
-function imprimirGrupos(grupos) {
-    // Obtén el elemento HTML donde deseas mostrar los grupos
-    const resultadoContainer = document.getElementById("resultado");
-    // Reinicia el contenido para evitar duplicados
-    resultadoContainer.innerHTML = "";
-    // Itera sobre cada grupo
-    grupos.forEach((grupo, indice) => {
-        // Crea un nuevo elemento div para representar el grupo
-        const grupoDiv = document.createElement("div");
-        grupoDiv.classList.add("grupo"); // Puedes agregar clases CSS para darle estilo a los grupos si lo deseas
-        // Itera sobre los nombres dentro del grupo
-        grupo.forEach((nombre) => {
-            // Crea un elemento de párrafo para cada nombre y agrégalo al grupoDiv
-            const nombreParrafo = document.createElement("p");
-            nombreParrafo.textContent = nombre;
-            grupoDiv.appendChild(nombreParrafo);
-        });
-        // Agrega el grupoDiv al contenedor principal
-        resultadoContainer.appendChild(grupoDiv);
-    });
+    const $mostrarGrupos = document.getElementById("mostrarGrupos");
+    if ($mostrarGrupos) {
+        $mostrarGrupos.innerHTML = '';
+        const gruposAleatorios = agruparNombres(participantes);
+        for (let i = 0; i < gruposAleatorios.length; i++) {
+            $mostrarGrupos.innerHTML +=
+                `<div class="card" style="width: 18rem;"> <div class="card-header">
+            Grupo: ${i + 1} </div> <ul class="list-group list-group-flush">
+            <li class="list-group-item">Integrantes: ${gruposAleatorios[i].join(', ')}</li>
+          </ul>
+        </div>`;
+        }
+        ;
+    }
 }

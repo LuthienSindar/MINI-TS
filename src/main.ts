@@ -24,21 +24,19 @@ const participantes: Participantes[] = [];
 
 //Función para obtener los valores ingresados por el usuario
 function crearGrupos(evento: Event): void {
-  evento.preventDefault();
-  const nuevoGrupo: Participantes = {
-    nombres: $form.participantes.value.split(","),
-    cantidadGrupos: parseInt(rango.value),
-  };
-  //Condicional para avisar si hay más grupos que participantes
-  if (nuevoGrupo.cantidadGrupos > nuevoGrupo.nombres.length) {
-    alert("nope");
-  } else {
-    participantes.push(nuevoGrupo);
-    agruparNombres(participantes);
-  }
+    evento.preventDefault();
+    const nuevoGrupo: Participantes = {
+        nombres: $form.participantes.value.split(","),
+        cantidadGrupos: parseInt(rango.value),
+    };
 
-  // Llama a la función para imprimir los grupos en el HTML
-  imprimirGrupos(gruposGenerados);
+    if (nuevoGrupo.cantidadGrupos > nuevoGrupo.nombres.length) {
+        alert("nope")
+    } else {
+        participantes.push(nuevoGrupo)
+        mostrarGrupo();
+    }
+
 }
 
 function mezclarArray(array: string[]): string[] {
@@ -52,6 +50,8 @@ function mezclarArray(array: string[]): string[] {
   // retornamos un nuevo arreglo mezclado
   return array;
 }
+
+
 
 // La función agruparNombres toma un arreglo de objetos 'Participantes' y crea los grupos segun lo que quiere el usuario y les va poniendo
 // los nombres que mezclamos en orden del idice de los grupos que se crearon, nos retorna una lista de listas de nombres.
@@ -75,6 +75,26 @@ function agruparNombres(grupos: Participantes[]): string[][] {
     // lo que permite una distribución cíclica de los nombres entre los grupos. en resumen vuelve al primer grupo y mete otro nombre :p
     index = (index + 1) % grupos[0].cantidadGrupos;
   }
+    // Se mezclan los nombres del primer grupo utilizando la función mezclarArray construida antes.
+    const nombresMezclados = mezclarArray([...grupos[0].nombres]);
+    // Se inicializa un arreglo vacío para almacenar los nombres agrupados
+    const gruposAgrupados: string[][] = [];
+     // Se crea un bucle que recorrerá el número de grupos especificados en el input del usuario
+    for (let i = 0; i < grupos[0].cantidadGrupos; i++) {
+        // crea un grupo vacio por cada recorrido del bicle (esta creando los grupos que necesitamos segun lo que el usuario necesita)
+        gruposAgrupados.push([]);
+    }
+    // se crea una variable index = 0 para saber a que grupo se le asignaran los nombres mezclados
+    let index = 0;
+    // Se realiza un bucle a través de los nombres mezclados
+    for (const nombre of nombresMezclados) {
+        // Se agrega el nombre al grupo actual en el que se encuentra el índice
+        gruposAgrupados[index].push(nombre);
+        // Se actualiza el índice para pasar al siguiente grupo y hacemos que index vuelva al principio si supera el número total de grupos,
+        // lo que permite una distribución cíclica de los nombres entre los grupos. en resumen vuelve al primer grupo y mete otro nombre :p
+        index = (index + 1) % grupos[0].cantidadGrupos;
+    }
+
 
   console.log(gruposAgrupados);
   // retornamos los grupos agrupados
@@ -82,37 +102,21 @@ function agruparNombres(grupos: Participantes[]): string[][] {
 }
 
 function mostrarGrupo(): void {
-  const $mostrarGrupo = document.getElementById("mostrarGrupo");
-  let contenidoHtml: string = ``;
-  //gruposAgrupados.forEach((grupo) => {});
-}
-mostrarGrupo();
+    const $mostrarGrupos = document.getElementById("mostrarGrupos");
 
-// Función para imprimir los grupos en el HTML
-function imprimirGrupos(grupos: string[][]): void {
-  // Obtén el elemento HTML donde deseas mostrar los grupos
-  const resultadoContainer = document.getElementById(
-    "resultado"
-  ) as HTMLDivElement;
+    if ($mostrarGrupos) {
+        $mostrarGrupos.innerHTML = '';
 
-  // Reinicia el contenido para evitar duplicados
-  resultadoContainer.innerHTML = "";
+        const gruposAleatorios = agruparNombres(participantes);
 
-  // Itera sobre cada grupo
-  grupos.forEach((grupo, indice) => {
-    // Crea un nuevo elemento div para representar el grupo
-    const grupoDiv = document.createElement("div");
-    grupoDiv.classList.add("grupo"); // Puedes agregar clases CSS para darle estilo a los grupos si lo deseas
-
-    // Itera sobre los nombres dentro del grupo
-    grupo.forEach((nombre) => {
-      // Crea un elemento de párrafo para cada nombre y agrégalo al grupoDiv
-      const nombreParrafo = document.createElement("p");
-      nombreParrafo.textContent = nombre;
-      grupoDiv.appendChild(nombreParrafo);
-    });
-
-    // Agrega el grupoDiv al contenedor principal
-    resultadoContainer.appendChild(grupoDiv);
-  });
+        
+        for (let i = 0; i < gruposAleatorios.length; i++) {
+            $mostrarGrupos.innerHTML +=
+            `<div class="card" style="width: 18rem;"> <div class="card-header">
+            Grupo: ${i+1} </div> <ul class="list-group list-group-flush">
+            <li class="list-group-item">Integrantes: ${gruposAleatorios[i].join(', ')}</li>
+          </ul>
+        </div>`
+        };
+    }
 }
