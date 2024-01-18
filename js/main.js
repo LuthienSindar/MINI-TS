@@ -23,6 +23,9 @@ function crearGrupos(evento) {
     if (nuevoGrupo.cantidadGrupos > nuevoGrupo.nombres.length) {
         alert("nope");
     }
+    else if (nuevoGrupo.cantidadGrupos <= 1) {
+        alert("nope");
+    }
     else {
         participantes.push(nuevoGrupo);
         mostrarGrupo();
@@ -68,16 +71,22 @@ function agruparNombres(grupos) {
 function mostrarGrupo() {
     const $mostrarGrupos = document.getElementById("mostrarGrupos");
     if ($mostrarGrupos) {
-        $mostrarGrupos.innerHTML = '';
+        $mostrarGrupos.innerHTML = "";
         const gruposAleatorios = agruparNombres(participantes);
         for (let i = 0; i < gruposAleatorios.length; i++) {
-            $mostrarGrupos.innerHTML +=
-                `<div class="card" style="width: 18rem;"> <div class="card-header">
+            $mostrarGrupos.innerHTML += `<div class="card" style="width: 18rem;"> <div class="card-header">
             Grupo: ${i + 1} </div> <ul class="list-group list-group-flush">
-            <li class="list-group-item">Integrantes: ${gruposAleatorios[i].join(', ')}</li>
+            <li class="list-group-item">Integrantes: ${gruposAleatorios[i].join(", ")}</li>
           </ul>
         </div>`;
         }
-        ;
     }
+}
+/* Establezca el ancho de la Sidebar en 200px */
+function openNav() {
+    document.getElementById("mySidenav").style.width = "200px";
+}
+/* Establezca el ancho de la Sidebar en 0 */
+function closeNav() {
+    document.getElementById("mySidenav").style.width = "0";
 }
