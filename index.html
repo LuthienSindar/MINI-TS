@@ -45,13 +45,15 @@
             </div>
           <label for="customRange3" class="form-label">Example range</label>
           <div class="range" data-mdb-range-init>
-            <input type="range" class="form-range" min="0" max="10" step="1" value="0" id="sliderGrupos" />
-            <div id="cantidadGrupos" >Número de grupos: 0</div>
+            <input type="range" name="numeroGrupos2" class="form-range" min="1" max="10" step="1" value="0" id="sliderGrupos" />
+            <input type="number" id="numeroGrupos" name="numeroGrupos" placeholder="cantidad de grupos">
             <div id="boton" >
                 <input type="submit" value="CREAR" />
             </div>
           </div>
         </form>
+
+        <div id="mostrarGrupos"></div>
 
     </main>
 

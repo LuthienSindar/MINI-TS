@@ -4,12 +4,18 @@ rango.addEventListener("input", valorRango);
 let $cantidadGrupos = document.getElementById("cantidadGrupos") as HTMLFormElement;
 const $form = document.querySelector("form") as HTMLFormElement;
 $form.addEventListener("submit", crearGrupos)
+$form.numeroGrupos.addEventListener("input", valorRango2)
+
 
 
 //Función para determinar el valor del rango del slider
 function valorRango(event:Event) {
-    $cantidadGrupos.innerHTML = (`<p>Número de grupos: ${rango.value}</p>`);
+    $form.numeroGrupos.value = rango.value;
 }
+function valorRango2(event:Event) {
+    rango.value = $form.numeroGrupos.value;
+}
+
 
 interface Participantes {
     nombres: string[];
@@ -25,11 +31,16 @@ function crearGrupos(evento: Event): void {
         nombres: $form.participantes.value.split(","),
         cantidadGrupos: parseInt(rango.value),
     };
-    participantes.push(nuevoGrupo)
-    agruparNombres(participantes);
+
+    if (nuevoGrupo.cantidadGrupos > nuevoGrupo.nombres.length) {
+        alert("nope")
+    } else {
+        participantes.push(nuevoGrupo)
+        agruparNombres(participantes);
+    }
+
 }
 
-console.log(participantes)
 
 function mezclarArray(array: string[]): string[] {
     //Se recorre el arreglo de derecha a izquierda, desde el último elemento hasta el primero
@@ -43,13 +54,15 @@ function mezclarArray(array: string[]): string[] {
     return array;
 }
 
+const gruposAgrupados: string[][] = [];
+
 // La función agruparNombres toma un arreglo de objetos 'Participantes' y crea los grupos segun lo que quiere el usuario y les va poniendo
 // los nombres que mezclamos en orden del idice de los grupos que se crearon, nos retorna una lista de listas de nombres.
 function agruparNombres(grupos: Participantes[]): string[][] {
     // Se mezclan los nombres del primer grupo utilizando la función mezclarArray construida antes.
     const nombresMezclados = mezclarArray([...grupos[0].nombres]);
     // Se inicializa un arreglo vacío para almacenar los nombres agrupados
-    const gruposAgrupados: string[][] = [];
+   // const gruposAgrupados: string[][] = [];
      // Se crea un bucle que recorrerá el número de grupos especificados en el input del usuario
     for (let i = 0; i < grupos[0].cantidadGrupos; i++) {
         // crea un grupo vacio por cada recorrido del bicle (esta creando los grupos que necesitamos segun lo que el usuario necesita)
@@ -66,9 +79,15 @@ function agruparNombres(grupos: Participantes[]): string[][] {
         index = (index + 1) % grupos[0].cantidadGrupos;
     }
 
+
     console.log(gruposAgrupados);
     // retornamos los grupos agrupados
     return gruposAgrupados;
     
 }
 
+
+
+function mostrarGrupo(): void {
+    const $mostrarGrupo = document.getElementById("mostrarGrupo")!
+}
