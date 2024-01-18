@@ -22,7 +22,7 @@ interface Participantes {
     cantidadGrupos: number;
 }
 
-const participantes: Participantes [] = []
+let participantes: Participantes [] = []
 
 //Función para obtener los valores ingresados por el usuario 
 function crearGrupos(evento: Event): void {
@@ -32,13 +32,18 @@ function crearGrupos(evento: Event): void {
         cantidadGrupos: parseInt(rango.value),
     };
 
-    if (nuevoGrupo.cantidadGrupos > nuevoGrupo.nombres.length) {
+    if (nuevoGrupo.cantidadGrupos > nuevoGrupo.nombres.length){
         alert("nope")
-    } else {
+        
+    } 
+    else if ( nuevoGrupo.cantidadGrupos <= 1) {
+        alert("nope")
+    }
+    else {
+        participantes = []
         participantes.push(nuevoGrupo)
         mostrarGrupo();
     }
-
 }
 
 
