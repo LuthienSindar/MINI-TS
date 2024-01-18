@@ -36,7 +36,7 @@ function crearGrupos(evento: Event): void {
         alert("nope")
     } else {
         participantes.push(nuevoGrupo)
-        agruparNombres(participantes);
+        mostrarGrupo();
     }
 
 }
@@ -54,7 +54,7 @@ function mezclarArray(array: string[]): string[] {
     return array;
 }
 
-const gruposAgrupados: string[][] = [];
+
 
 // La función agruparNombres toma un arreglo de objetos 'Participantes' y crea los grupos segun lo que quiere el usuario y les va poniendo
 // los nombres que mezclamos en orden del idice de los grupos que se crearon, nos retorna una lista de listas de nombres.
@@ -62,7 +62,7 @@ function agruparNombres(grupos: Participantes[]): string[][] {
     // Se mezclan los nombres del primer grupo utilizando la función mezclarArray construida antes.
     const nombresMezclados = mezclarArray([...grupos[0].nombres]);
     // Se inicializa un arreglo vacío para almacenar los nombres agrupados
-   // const gruposAgrupados: string[][] = [];
+    const gruposAgrupados: string[][] = [];
      // Se crea un bucle que recorrerá el número de grupos especificados en el input del usuario
     for (let i = 0; i < grupos[0].cantidadGrupos; i++) {
         // crea un grupo vacio por cada recorrido del bicle (esta creando los grupos que necesitamos segun lo que el usuario necesita)
@@ -89,5 +89,21 @@ function agruparNombres(grupos: Participantes[]): string[][] {
 
 
 function mostrarGrupo(): void {
-    const $mostrarGrupo = document.getElementById("mostrarGrupo")!
+    const $mostrarGrupos = document.getElementById("mostrarGrupos");
+
+    if ($mostrarGrupos) {
+        $mostrarGrupos.innerHTML = '';
+
+        const gruposAleatorios = agruparNombres(participantes);
+
+        
+        for (let i = 0; i < gruposAleatorios.length; i++) {
+            $mostrarGrupos.innerHTML +=
+            `<div class="card" style="width: 18rem;"> <div class="card-header">
+            Grupo: ${i+1} </div> <ul class="list-group list-group-flush">
+            <li class="list-group-item">Integrantes: ${gruposAleatorios[i].join(', ')}</li>
+          </ul>
+        </div>`
+        };
+    }
 }
