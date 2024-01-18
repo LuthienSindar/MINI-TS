@@ -8,7 +8,7 @@ $form.numeroGrupos.addEventListener("input", valorRango2)
 
 
 
-//Función para determinar el valor del rango del slider
+//Función para determinar el valor del rango del slider e igualarlo al input tipo number
 function valorRango(event:Event) {
     $form.numeroGrupos.value = rango.value;
 }
@@ -31,7 +31,7 @@ function crearGrupos(evento: Event): void {
         nombres: $form.participantes.value.split(","),
         cantidadGrupos: parseInt(rango.value),
     };
-
+//Condicional para avisar si hay más grupos que participantes
     if (nuevoGrupo.cantidadGrupos > nuevoGrupo.nombres.length) {
         alert("nope")
     } else {
@@ -85,8 +85,6 @@ function agruparNombres(grupos: Participantes[]): string[][] {
     return gruposAgrupados;
     
 }
-
-
 
 function mostrarGrupo(): void {
     const $mostrarGrupo = document.getElementById("mostrarGrupo")!
