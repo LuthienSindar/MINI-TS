@@ -32,7 +32,7 @@ function crearGrupos(evento: Event): void {
         cantidadGrupos: parseInt(rango.value),
     };
 
-    if (nuevoGrupo.cantidadGrupos > nuevoGrupo.nombres.length){
+    if (nuevoGrupo.cantidadGrupos >= nuevoGrupo.nombres.length){
         alert("nope")
         
     } 
