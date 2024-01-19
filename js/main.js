@@ -12,7 +12,7 @@ function valorRango(event) {
 function valorRango2(event) {
     rango.value = $form.numeroGrupos.value;
 }
-const participantes = [];
+let participantes = [];
 //Función para obtener los valores ingresados por el usuario
 function crearGrupos(evento) {
     evento.preventDefault();
@@ -27,6 +27,7 @@ function crearGrupos(evento) {
         alert("nope");
     }
     else {
+        participantes = [];
         participantes.push(nuevoGrupo);
         mostrarGrupo();
     }
