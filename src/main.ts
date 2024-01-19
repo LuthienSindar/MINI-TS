@@ -112,3 +112,13 @@ function mostrarGrupo(): void {
         };
     }
 }
+
+/* Establezca el ancho de la Sidebar en 200px */
+function openNav(): void {
+    document.getElementById("mySidenav")!.style.width = "200px";
+  }
+  
+  /* Establezca el ancho de la Sidebar en 0 */
+  function closeNav(): void {
+    document.getElementById("mySidenav")!.style.width = "0";
+  }
