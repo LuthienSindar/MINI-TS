@@ -20,7 +20,7 @@ function crearGrupos(evento) {
         nombres: $form.participantes.value.split(","),
         cantidadGrupos: parseInt(rango.value),
     };
-    if (nuevoGrupo.cantidadGrupos > nuevoGrupo.nombres.length) {
+    if (nuevoGrupo.cantidadGrupos >= nuevoGrupo.nombres.length) {
         alert("nope");
     }
     else if (nuevoGrupo.cantidadGrupos <= 1) {
@@ -84,4 +84,12 @@ function mostrarGrupo() {
         }
         ;
     }
+}
+/* Establezca el ancho de la Sidebar en 200px */
+function openNav() {
+    document.getElementById("mySidenav").style.width = "200px";
+}
+/* Establezca el ancho de la Sidebar en 0 */
+function closeNav() {
+    document.getElementById("mySidenav").style.width = "0";
 }
