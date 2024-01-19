@@ -22,7 +22,7 @@ interface Participantes {
     cantidadGrupos: number;
 }
 
-let participantes: Participantes [] = []
+let participantes: Participantes [] = [];
 
 //Función para obtener los valores ingresados por el usuario 
 function crearGrupos(evento: Event): void {
@@ -40,8 +40,8 @@ function crearGrupos(evento: Event): void {
         alert("nope")
     }
     else {
-        participantes = []
-        participantes.push(nuevoGrupo)
+        participantes = [];
+        participantes.push(nuevoGrupo);
         mostrarGrupo();
     }
 }
