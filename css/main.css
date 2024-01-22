@@ -538,7 +538,7 @@ body.dark .switch::before {
 /* Main End */
 
 /* Footer Start */
-.footer {
+footer {
   position: fixed;
   left: 0;
   bottom: 0;
@@ -547,7 +547,6 @@ body.dark .switch::before {
   background-color: var(--dark-color);
   color: white;
   text-align: center;
-  z-index: -1;
 }
 
 .footerLogo {
@@ -564,12 +563,16 @@ body.dark .switch::before {
   left: 0;
 }
 
+.footerTitlePhone {
+  display: none;
+}
+
 .link {
   position: relative;
-  top: 3.7vh;
   left: 28vh;
   text-decoration: none;
   color:#a7d129;
+  top: 3.7vh;
   padding-right: 3.5vh;
   padding-left: 3.5vh;
   margin-right: 2.5vh;
@@ -580,5 +583,59 @@ body.dark .switch::before {
   border-radius: 0.25rem;
   cursor: pointer;
 }
+
+@media (max-width: 820px) {
+  .link {
+    display: none;
+  }
+
+  .footerTitle {
+    display: block;
+    right: 20vh;
+    bottom: 10vh;
+  }
+
+  .footerLogo {
+    position: absolute;
+    margin-right: 1vh;
+    right: 0;
+    top: 1vh;
+    width: 100px;
+    height: 100px;
+  }
+
+}
+
+@media (max-width: 390px) {
+  .link {
+    display: none;
+  }
+
+  .footerTitle {
+    display: none;
+  }
+
+  .footerTitlePhone {
+    position: absolute;
+    display:block;
+    color: white;
+    top: 3.7vh;
+    left: 4vh;
+  }
+
+  .footerLogo {
+    position: absolute;
+    margin-right: 1vh;
+    right: 0;
+    top: 0.5vh;
+    width: 75px;
+    height: 75px;
+  }
+
+}
+
+
+
+
 
 /* Footer End */
