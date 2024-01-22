@@ -1,4 +1,17 @@
 "use strict";
+const $body = document.querySelector("body"), $sidebar = $body.querySelector(".sidebar"), $toggle = $body.querySelector(".toggle"), $searchBtn = $body.querySelector(".search-box"), $modeSwitch = $body.querySelector(".toggle-switch"), $modeText = $body.querySelector(".mode-text");
+$toggle.addEventListener("click", () => {
+    $sidebar.classList.toggle("close");
+});
+$modeSwitch.addEventListener("click", () => {
+    $body.classList.toggle("dark");
+    if ($body.classList.contains("dark")) {
+        $modeText.innerHTML = "Light Mode";
+    }
+    else {
+        $modeText.innerHTML = "Dark Mode";
+    }
+});
 let rango = document.getElementById("sliderGrupos");
 rango.addEventListener("input", valorRango);
 let $cantidadGrupos = document.getElementById("cantidadGrupos");
@@ -20,7 +33,7 @@ function crearGrupos(evento) {
         nombres: $form.participantes.value.split(","),
         cantidadGrupos: parseInt(rango.value),
     };
-    if (nuevoGrupo.cantidadGrupos > nuevoGrupo.nombres.length) {
+    if (nuevoGrupo.cantidadGrupos >= nuevoGrupo.nombres.length) {
         alert("nope");
     }
     else if (nuevoGrupo.cantidadGrupos <= 1) {
@@ -85,9 +98,9 @@ function mostrarGrupo() {
 }
 /* Establezca el ancho de la Sidebar en 200px */
 function openNav() {
-    document.getElementById("mySidenav").style.width = "200px";
+    document.getElementById("sidebar").style.width = "200px";
 }
 /* Establezca el ancho de la Sidebar en 0 */
 function closeNav() {
-    document.getElementById("mySidenav").style.width = "0";
+    document.getElementById("sidebar").style.width = "0";
 }

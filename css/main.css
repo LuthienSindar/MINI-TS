@@ -1,137 +1,362 @@
-/* Imports Start */
-@import url("https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,300;0,400;0,500;0,600;0,700;1,200;1,300&family=Pixelify+Sans:wght@400;500;600;700&family=Roboto+Mono:wght@400;500;600;700&display=swap");
-/* Imports End */
+/* Imports */
+@import url("https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;500;600;700&display=swap");
 
 /* Roots Start */
-
-:root {
-  --header-height: 3rem;
-  /* --nav-width: 68px; */
-  --first-color: #acb992;
-  --second-color-light: #f9efdb;
-  --white-color: #e9e5d6;
-  --dark-color: #464e2e;
-  --brown-color: #362706;
-  --body-font: "Nunito", sans-serif;
-  --normal-font-size: 1rem;
-  --z-fixed: 100;
-}
 *,
 ::before,
 ::after {
   box-sizing: border-box;
+  font-family: "Nunito", sans-serif;
 }
+.reset {
+  all: unset;
+}
+:root {
+  /* Colors */
+  --body-color: #e9e5d6;
+  --sidebar-color: #fff;
+  --primary-color: #464e2e;
+  --primary-color-light: #acb992;
+  --toggle-color: #ddd;
+  --text-color: #747474;
+  --icon-color: #000;
+  --text-color-hover: #fff;
+  --icon-color-hover: #fff;
+  /* old-colors */
+  --second-color-light: #f9efdb;
+  --white-color: #e9e5d6;
+  --dark-color: #464e2e;
+  --brown-color: #362706;
+  /* Tamaños */
+  --header-height: 3rem;
+  --nav-width: 6.8rem;
+  --normal-font-size: 1rem;
+  /* Transiciones */
+  --tran-02: all 0.2s ease;
+  --tran-03: all 0.3s ease;
+  --tran-04: all 0.4s ease;
+  --tran-05: all 0.5s ease;
+  --z-fixed: 10;
+}
+
 html body {
-  background-color: var(--white-color);
-  /* background: rgb(235, 217, 180);
-  background: linear-gradient(
-    0deg,
-    rgba(235, 217, 180, 1) 0%,
-    rgba(249, 239, 219, 1) 100%
-  ); */
+  height: 100vh; /*cambiar a 100*/
+  background-color: var(--body-color);
   position: relative;
   margin: 0;
+  padding: 0;
   font-family: var(--body-font);
   font-size: var(--normal-font-size);
-  transition: 0.5s;
+  transition: var(--tran-04);
 }
-
+body.dark {
+  --body-color: #343434;
+  --sidebar-color: #616f39;
+  --primary-color: #3e432e;
+  --primary-color-light: #3e432e;
+  --toggle-color: #d1d4c9;
+  --text-color: #fff;
+  --icon-color: #fff;
+  --text-color-hover: #a7d129;
+  --icon-color-hover: #a7d129;
+  /* old-colors */
+  --first-color: #3e432e;
+  --second-color-light: #f9efdb;
+  --white-color: #e9e5d6;
+  --dark-color: #464e2e;
+  --brown-color: #362706;
+}
 /* Roots End */
 
-/* Main Start */
-main {
-  position: relative;
-  margin: 1rem;
-  height: 85cqw;
+/* Scrollbar Start */
+html body::-webkit-scrollbar {
+  width: 0.3rem;
 }
-/* Main End */
+
+html body::-webkit-scrollbar-track {
+  background: #1e1e24;
+}
+
+html body::-webkit-scrollbar-thumb {
+  background: var(--second-color-light);
+}
+
+/* Scrollbar End */
 
 /* Navbar Start */
-
-.navbar {
-  background-color: var(--first-color);
-  justify-content: right;
-  padding: 0 0 0 0;
-}
-.navbar-content {
-  justify-content: right;
-}
-.logo {
-  padding-left: 2rem;
-  height: 4.25rem;
-}
 /* Navbar End */
 
 /* SideBar Start*/
-/* Sidebar Icon */
-.sidebarIcon img {
-  margin-left: 10px;
-  height: 2rem;
-}
-
-/* The sidebar menu */
-.sidenav {
-  height: 100%; /* 100% Full-height */
-  width: 0; /* 0 width - change this with JavaScript */
-  position: fixed; /* Stay in place */
-  z-index: 1; /* Stay on top */
-  top: 0; /* Stay at the top */
-  left: 0;
-  background-color: var(--brown-color); /* Black*/
-  overflow-x: hidden; /* Disable horizontal scroll */
-  padding-top: 60px; /* Place content 60px from the top */
-  transition: 0.5s; /* 0.5 second transition effect to slide in the sidenav */
-}
-
-/* Sidebar menu links */
-.sidenav a {
-  padding: 8px 8px 8px 32px;
-  text-decoration: none;
-  font-size: 25px;
-  color: var(--white-color);
-  display: block;
-  transition: 0.3s;
-}
-
-/* Cuando pasa el mouse sobre los enlaces de navegación, cambia su color */
-.sidenav a:hover {
-  color: #f1f1f1;
-}
-
-/* Coloque y aplique estilo al botón de cerrar (esquina superior derecha) */
-.sidenav .closebtn {
-  position: absolute;
+.sidebar {
+  position: fixed;
   top: 0;
-  right: 25px;
-  font-size: 36px;
-  margin-left: 50px;
+  left: 0;
+  height: 100%;
+  width: 250px;
+  padding: 5px 10px 14px 10px;
+  background: var(--sidebar-color);
+  transition: var(--tran-05);
+}
+.sidebar.close {
+  width: 88px;
 }
 
-/* Estilo del contenido de la página: use esto si desea empujar el contenido de la página hacia la derecha cuando abre la navegación lateral. */
-#main {
-  transition: margin-left 0.5s;
-  padding: 20px;
+/* CSS Reusable */
+.sidebar .text {
+  font-size: 1rem;
+  font-weight: 500;
+  color: var(--text-color);
+  transition: var(--tran-03);
+  white-space: nowrap;
+  opacity: 1;
+}
+.sidebar.close .text {
+  opacity: 0;
 }
 
-/* En pantallas más pequeñas, donde la altura es inferior a 450 px, cambie el estilo del navegador lateral (menos relleno y un tamaño de fuente más pequeño)
-​ */
-@media screen and (max-height: 450px) {
-  .sidenav {
-    padding-top: 15px;
-  }
-  .sidenav a {
-    font-size: 18px;
-  }
+.sidebar .image {
+  margin-right: 0.625rem;
+  display: flex;
+  align-items: center;
+  background-color: var(--primary-color-light);
+  border-radius: 12px;
 }
+.sidebar ul {
+  padding: 0;
+}
+.sidebar li {
+  height: 3.125rem;
+  margin-top: 0.625rem;
+  list-style: none;
+  display: flex;
+  align-items: center;
+}
+.sidebar li .icon,
+.sidebar li .text {
+  color: var(--text-color);
+  transition: var(--tran-02);
+}
+.sidebar li .icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 3.75rem;
+  font-size: 20px;
+  fill: var(--icon-color);
+}
+
+.sidebar header {
+  position: relative;
+}
+
+.sidebar .image-text img {
+  height: 4.25rem;
+  width: 4.25rem;
+  border-radius: 0.375rem;
+}
+.sidebar header .image-text {
+  display: flex;
+  align-items: center;
+}
+
+header .image-text .header-text {
+  display: flex;
+  flex-direction: column;
+}
+.header-text .name {
+  font-weight: 700;
+}
+.header-text .option1 {
+  margin-top: -0.125rem;
+}
+.sidebar header .toggle {
+  position: absolute;
+  top: 50%;
+  right: -22px;
+  transform: translateY(-50%) rotate(180deg);
+  height: 1.5625rem;
+  width: 1.5625rem;
+  background: var(--brown-color);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  color: var(--sidebar-color);
+  font-size: 1.375rem;
+  fill: var(--icon-color-hover);
+  cursor: pointer;
+  transition: var(--tran-03);
+}
+
+.sidebar.close header .toggle {
+  transform: translateY(-50%);
+}
+body.dark .sidebar header .toggle {
+  transform: rotate(180deg);
+}
+body.dark .sidebar.close header .toggle {
+  transform: translateY(-50%);
+}
+.sidebar .search-box {
+  background: var(--primary-color-light);
+  border-radius: 0.375rem;
+}
+.search-box input {
+  height: 100%;
+  width: 100%;
+  outline: none;
+  border: none;
+  border-radius: 0.375rem;
+  background: var(--primary-color-light);
+}
+.sidebar li a {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  border-radius: 0.375rem;
+  transition: var(--tran-04);
+}
+.sidebar li a:hover {
+  background: var(--primary-color-light);
+}
+
+.sidebar li a:hover .icon,
+.sidebar li a:hover .text {
+  color: var(--text-color-hover);
+  fill: var(--icon-color-hover);
+}
+
+body.dark .sidebar li a:hover .icon,
+body.dark .sidebar li a:hover .text {
+  color: var(--text-color-hover);
+  fill: var(--icon-color-hover);
+}
+
+.sidebar .menu-bar {
+  height: calc(100% - 60px);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.menu-bar .mode {
+  position: relative;
+  border-radius: 0.375rem;
+  background: var(--primary-color-light);
+  border-radius: 0.375rem;
+}
+.menu-bar .mode .moon-sun {
+  height: 3.125rem;
+  width: 3.75rem;
+  display: flex;
+  align-items: center;
+}
+.menu-bar .mode .icon {
+  position: absolute;
+  transition: var(--tran-03);
+}
+.menu-bar .mode .icon.sun {
+  opacity: 0;
+}
+body.dark .menu-bar .mode .icon.sun {
+  opacity: 1;
+}
+body.dark .menu-bar .mode .icon.moon {
+  opacity: 0;
+}
+
+.menu-bar .mode .toggle-switch {
+  position: absolute;
+  right: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  min-width: 60px;
+  cursor: pointer;
+  border-radius: 0.375rem;
+  background: var(--primary-color-light);
+}
+.toggle-switch .switch {
+  position: relative;
+  height: 22px;
+  width: 44px;
+  border-radius: 25px;
+  background: var(--toggle-color);
+}
+
+.switch::before {
+  content: "";
+  position: absolute;
+  height: 15px;
+  width: 15px;
+  border-radius: 50%;
+  top: 50%;
+  left: 5px;
+  transform: translateY(-50%);
+  background: var(--sidebar-color);
+  transition: var(--tran-03);
+}
+body.dark .switch::before {
+  left: 1.5625rem;
+}
+/* Sidebar End */
+
+/* Main Start */
+
+.mainSection {
+  height: 100svh;
+  /* transform: translateY(20%); */
+  z-index: 1;
+}
+
+.container {
+  margin-top: 100px;
+  /* background: red; */
+}
+
+.row {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.card-01 {
+  display: grid;
+  flex: 1;
+  max-width: 500px;
+  height: 400px;
+  margin: 5%;
+  padding: 20px 26px;
+  border-radius: 0.375rem;
+  background: var(--sidebar-color);
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+}
+.title {
+  font-size: 25px;
+}
+
+.card-01 .text {
+  fill: var(--icon-color);
+  color: var(--icon-color);
+  padding-left: 10px;
+}
+
+/* Main End */
 
 /* Footer Start */
 .footer {
-  position: fixed;
+  position: relative;
   left: 0;
   bottom: 0;
   width: 100%;
+  height: 60px;
   background-color: var(--dark-color);
   color: white;
   text-align: center;
+  z-index: -1;
 }
 /* Footer End */

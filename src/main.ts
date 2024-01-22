@@ -1,3 +1,23 @@
+const $body = document.querySelector("body")!,
+  $sidebar = $body.querySelector(".sidebar")!,
+  $toggle = $body.querySelector(".toggle")!,
+  $searchBtn = $body.querySelector(".search-box")!,
+  $modeSwitch = $body.querySelector(".toggle-switch")!,
+  $modeText = $body.querySelector(".mode-text")!;
+
+$toggle.addEventListener("click", () => {
+  $sidebar.classList.toggle("close");
+});
+
+$modeSwitch.addEventListener("click", () => {
+  $body.classList.toggle("dark");
+  if ($body.classList.contains("dark")) {
+    $modeText.innerHTML = "Light Mode";
+  } else {
+    $modeText.innerHTML = "Dark Mode";
+  }
+});
+
 let rango = document.getElementById("sliderGrupos") as HTMLFormElement;
 rango.addEventListener("input", valorRango);
 let $cantidadGrupos = document.getElementById(
@@ -102,10 +122,10 @@ function mostrarGrupo(): void {
 
 /* Establezca el ancho de la Sidebar en 200px */
 function openNav(): void {
-  document.getElementById("mySidenav")!.style.width = "200px";
+  document.getElementById("sidebar")!.style.width = "200px";
 }
 
 /* Establezca el ancho de la Sidebar en 0 */
 function closeNav(): void {
-  document.getElementById("mySidenav")!.style.width = "0";
+  document.getElementById("sidebar")!.style.width = "0";
 }
