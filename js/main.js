@@ -88,11 +88,15 @@ function mostrarGrupo() {
         $mostrarGrupos.innerHTML = "";
         const gruposAleatorios = agruparNombres(participantes);
         for (let i = 0; i < gruposAleatorios.length; i++) {
-            $mostrarGrupos.innerHTML += `<div class="card" style="width: 18rem;"> <div class="card-header">
-            Grupo: ${i + 1} </div> <ul class="list-group list-group-flush">
-            <li class="list-group-item">Integrantes: ${gruposAleatorios[i].join(", ")}</li>
-          </ul>
-        </div>`;
+            $mostrarGrupos.innerHTML += `<div class="cardGroup">
+      <div class="cardHeader">Grupo: ${i + 1}</div>
+      <ul class="list-group list-group-flush">
+        <li class="listGroupItem">
+          Integrantes: ${gruposAleatorios[i].join(", ")}
+          
+        </li>
+      </ul>
+    </div>`;
         }
     }
 }
