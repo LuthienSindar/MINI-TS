@@ -37,10 +37,12 @@
   --tran-04: all 0.4s ease;
   --tran-05: all 0.5s ease;
   --z-fixed: 10;
+  /* bootstrap */
+  --bs-body-color-rgb: #acb992;
 }
 
 html body {
-  height: 100vh; /*cambiar a 100*/
+  height: 100svh;
   background-color: var(--body-color);
   position: relative;
   margin: 0;
@@ -191,6 +193,13 @@ header .image-text .header-text {
 .sidebar.close header .toggle {
   transform: translateY(-50%);
 }
+
+@media (max-width: 500px) {
+  .sidebar.close {
+    transform: translateX(-90%);
+  }
+}
+
 body.dark .sidebar header .toggle {
   transform: rotate(180deg);
 }
@@ -323,32 +332,213 @@ body.dark .switch::before {
   justify-content: center;
   flex-wrap: wrap;
 }
+@media (max-width: 500px) {
+  .container {
+    margin-top: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+}
 
 .card-01 {
   display: grid;
   flex: 1;
-  max-width: 500px;
-  height: 400px;
+  flex-wrap: wrap;
   margin: 5%;
   padding: 20px 26px;
   border-radius: 0.375rem;
   background: var(--sidebar-color);
   box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
 }
+
+@media (max-width: 500px) {
+  .card-01 {
+    margin-top: 30px;
+    display: flex;
+    flex-direction: column;
+  }
+  .groups {
+    display: flex;
+    flex-direction: row;
+  }
+  .cardGroup {
+    width: 40% !important;
+  }
+}
 .title {
   font-size: 25px;
+  color: var(--text-color);
 }
 
 .card-01 .text {
   fill: var(--icon-color);
   color: var(--icon-color);
+  display: flex;
+  justify-content: start;
+  align-items: center;
   padding-left: 10px;
 }
 
+.inputParticipants {
+  margin: 10px;
+  border: 1px solid lightgray;
+  border-radius: 0.375rem;
+  color: #fff;
+  background: var(--primary-color-light);
+}
+.range {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-left: 10px;
+}
+.range .rangeGrupos {
+  width: 60%;
+}
+.range .inputParticipants {
+  width: 30%;
+}
+/* Range Teams Start */
+.rangeGrupos {
+  --webkit-appearance: none;
+  appearance: none;
+  width: 50%;
+  cursor: pointer;
+  outline: none;
+  overflow: hidden;
+  border-radius: 16px;
+}
+.rangeGrupos::-webkit-slider-runnable-track {
+  height: 15px;
+  background: var(--toggle-color);
+  border-radius: 16px;
+}
+.rangeGrupos::-moz-range-track {
+  height: 15px;
+  background: #ccc;
+  border-radius: 16px;
+}
+.rangeGrupos::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  height: 15px;
+  width: 15px;
+  background-color: #fff;
+  border-radius: 50%;
+  border: 2px solid var(--primary-color-light);
+  box-shadow: -407px 0 0 400px var(--primary-color-light);
+}
+.rangeGrupos::-moz-range-thumb {
+  height: 15px;
+  width: 15px;
+  background-color: #fff;
+  border-radius: 50%;
+  border: 1px solid #f50;
+  box-shadow: -407px 0 0 400px #f50;
+}
+/* Range Teams End */
+/* Button Generate Start*/
+#button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.button {
+  background: var(--primary-color-light);
+  backface-visibility: hidden;
+  border-radius: 0.375rem;
+  border-style: solid;
+  border-width: 0.0625rem;
+  color: #fff;
+  cursor: pointer;
+  display: inline-block;
+  font-size: 1.125rem;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  line-height: 1.3;
+  padding: 0.875rem 1.125rem;
+  text-align: left;
+  text-decoration: none;
+  /* transform: translateZ(0) scale(1); */
+  transition: var(--tran-02);
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+}
+
+.button:not(:disabled):hover {
+  transform: scale(1.05);
+}
+
+.button:not(:disabled):hover:active {
+  transform: scale(1.05) translateY(0.125rem);
+}
+
+.button:focus {
+  outline: 0 solid transparent;
+}
+
+.button:focus:before {
+  content: "";
+  left: calc(-1 * 0.375rem);
+  pointer-events: none;
+  position: absolute;
+  top: calc(-1 * 0.375rem);
+  transition: var(--tran-02);
+  user-select: none;
+}
+
+.button:focus:not(:focus-visible) {
+  outline: 0 solid transparent;
+}
+
+.button:focus:not(:focus-visible):before {
+  border-width: 0;
+}
+
+.button:not(:disabled):active {
+  transform: translateY(0.125rem);
+}
+/* Button Generate End*/
+/* Groups Start */
+.groups {
+  display: flex;
+  /* flex-wrap: nowrap; */
+  flex: 1;
+  justify-content: space-evenly;
+  gap: 20px;
+  padding: 20px 26px;
+}
+.card {
+  transform: 0;
+  width: 150px;
+  position: static;
+}
+.cardGroup {
+  border-radius: 0.375rem;
+  height: 100%;
+  width: calc(30%);
+  border: lightgray solid 1px;
+  overflow: auto;
+}
+.cardHeader {
+  color: var(--text-color);
+  padding: 10px;
+  /* width: 100%; */
+  background-color: var(--primary-color-light);
+  border-bottom: lightgray solid 1px;
+}
+.listGroupItem {
+  padding: 10px;
+  background-color: var();
+  color: var(--text-color);
+  position: static;
+}
 /* Main End */
 
 /* Footer Start */
-footer {
+.footer {
   position: fixed;
   left: 0;
   bottom: 0;

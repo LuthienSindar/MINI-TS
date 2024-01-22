@@ -17,9 +17,6 @@
   </head>
   <body>
     <header>
-      <!-- Navbar Start -->
-
-      <!-- Navbar End -->
       <!-- Sidebar Start -->
       <nav class="sidebar close">
         <header>
@@ -110,14 +107,13 @@
                 ><box-icon name="dice-1" class="icon"></box-icon>Enter
                 Participants:</label
               >
-
-              <input
+              <textarea
                 name="participantes"
-                type="text"
+                cols="30"
+                rows="10"
                 class="inputParticipants"
-                aria-describedby="instrucciones"
                 placeholder='Separate the names with commas: "Example, "'
-              />
+              ></textarea>
 
               <label for="rangoGrupos" class="rangoGrupos"> </label>
               <span class="text"
@@ -130,9 +126,9 @@
                   name="numeroGrupos2"
                   class="rangeGrupos"
                   min="1"
-                  max="10"
+                  max="100"
                   step="1"
-                  value="0"
+                  value="2"
                   id="sliderGrupos"
                 />
                 <input
@@ -140,13 +136,79 @@
                   id="numeroGrupos"
                   name="numeroGrupos"
                   placeholder="Team quantity"
+                  class="inputParticipants"
                 />
               </div>
-              <div id="boton">
-                <input type="submit" class="generate" value="Generate" />
+
+              <div id="button">
+                <input type="submit" class="generate button" value="Generate" />
               </div>
             </form>
-            <div class="card-01" id="mostrarGrupos"></div>
+            <div class="card-01 groups" id="mostrarGrupos">
+              <div class="cardGroup">
+                <div class="cardHeader">Grupo:</div>
+                <ul class="list-group list-group-flush">
+                  <li class="listGroupItem">Integrantes:</li>
+                  <br />
+                </ul>
+              </div>
+              <div class="cardGroup">
+                <div class="cardHeader">Grupo:</div>
+                <ul class="list-group list-group-flush">
+                  <li class="listGroupItem">Integrantes:</li>
+                  <br />
+                </ul>
+              </div>
+              <div class="cardGroup">
+                <div class="cardHeader">Grupo:</div>
+                <ul class="list-group list-group-flush">
+                  <li class="listGroupItem">Integrantes:</li>
+                  <br />
+                </ul>
+              </div>
+              <div class="cardGroup">
+                <div class="cardHeader">Grupo:</div>
+                <ul class="list-group list-group-flush">
+                  <li class="listGroupItem">Integrantes:</li>
+                  <br />
+                </ul>
+              </div>
+              <div class="cardGroup">
+                <div class="cardHeader">Grupo:</div>
+                <ul class="list-group list-group-flush">
+                  <li class="listGroupItem">Integrantes:</li>
+                  <br />
+                </ul>
+              </div>
+              <div class="cardGroup">
+                <div class="cardHeader">Grupo:</div>
+                <ul class="list-group list-group-flush">
+                  <li class="listGroupItem">Integrantes:</li>
+                  <br />
+                </ul>
+              </div>
+              <div class="cardGroup">
+                <div class="cardHeader">Grupo:</div>
+                <ul class="list-group list-group-flush">
+                  <li class="listGroupItem">Integrantes:</li>
+                  <br />
+                </ul>
+              </div>
+              <div class="cardGroup">
+                <div class="cardHeader">Grupo:</div>
+                <ul class="list-group list-group-flush">
+                  <li class="listGroupItem">Integrantes:</li>
+                  <br />
+                </ul>
+              </div>
+              <div class="cardGroup">
+                <div class="cardHeader">Grupo:</div>
+                <ul class="list-group list-group-flush">
+                  <li class="listGroupItem">Integrantes:</li>
+                  <br />
+                </ul>
+              </div>
+            </div>
           </div>
           <!-- grupos -->
         </div>
