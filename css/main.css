@@ -547,6 +547,7 @@ footer {
   background-color: var(--dark-color);
   color: white;
   text-align: center;
+  z-index: -1;
 }
 
 .footerLogo {
